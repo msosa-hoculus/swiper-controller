@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Elements Example</title>
+</head>
+<body>
+    <!-- Using multiple instances of the custom element -->
+    <my-custom-element id="element1"></my-custom-element>
+    <my-custom-element id="element2"></my-custom-element>
+
+    <script>
+        // Define the custom element
+        class MyCustomElement extends HTMLElement {
+            constructor() {
+                super();
+                this._myVariable = 'default value'; // Initialize a variable
+            }
+
+            // Getter for the variable
+            get myVariable() {
+                return this._myVariable;
+            }
+
+            // Setter for the variable
+            set myVariable(value) {
+                this._myVariable = value;
+                this.render(); // Call render to update any UI if necessary
+            }
+
+            // Method to render the element (optional)
+            render() {
+                this.innerHTML = `Variable value: ${this._myVariable}`;
+            }
+
+            connectedCallback() {
+                this.render(); // Initial render
+            }
+        }
+
+        customElements.define('my-custom-element', MyCustomElement);
+
+        // Get references to the custom element instances
+        const element1 = document.getElementById('element1');
+        const element2 = document.getElementById('element2');
+
+        // Access and modify the variable of each instance
+        // element1.myVariable = 'value for element 1';
+        element2.myVariable = 'value for element 2';
+
+        // Log the variables to verify changes
+        console.log(element1.myVariable); // logs: value for element 1
+        console.log(element2.myVariable); // logs: value for element 2
+    </script>
+</body>
+</html>

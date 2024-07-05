@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiper Sync Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        .swiper-container {
+            width: 600px;
+            height: 300px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper-container swiper1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+    </div>
+
+    <div class="swiper-container swiper2">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide A</div>
+            <div class="swiper-slide">Slide B</div>
+            <div class="swiper-slide">Slide C</div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper1 = new Swiper('.swiper1', {
+        });
+
+        const swiper2 = new Swiper('.swiper2', {
+        });
+
+        // Link the controllers
+        swiper1.controller.control = swiper2;
+        swiper2.controller.control = swiper1;
+    </script>
+</body>
+</html>
